@@ -46,31 +46,37 @@
           </div>
         </form>
       </div>
-      <b>Agent role</b>
-      <div class="role-presets">
-        <button type="button"
-                class="btn-role"
-                :class="{ active: currentPreset === 'any-any' }"
-                @click.prevent="presetRoles('any-any')">
-          <img :src="roleBtn3" />
-          <span class="role-text">Subject/Object</span>
-        </button>
+      <div class="container pl-0">
+        <form>
+          <div class="form-row">
+            <span>Agent role</span>
+            <div class="role-presets">
+              <button type="button"
+                      class="btn-role"
+                      :class="{ active: currentPreset === 'any-any' }"
+                      @click.prevent="presetRoles('any-any')">
+                <img :src="roleBtn3" />
+                <span class="role-text">Subject/Object</span>
+              </button>
 
-        <button type="button"
-                class="btn-role"
-                :class="{ active: currentPreset === 's-o' }"
-                @click.prevent="presetRoles('s-o')">
-          <img :src="roleBtn2" />
-          <span class="role-text">Subject</span>
-        </button>
+              <button type="button"
+                      class="btn-role"
+                      :class="{ active: currentPreset === 's-o' }"
+                      @click.prevent="presetRoles('s-o')">
+                <img :src="roleBtn2" />
+                <span class="role-text">Subject</span>
+              </button>
 
-        <button type="button"
-                class="btn-role"
-                :class="{ active: currentPreset === 'o-s' }"
-                @click.prevent="presetRoles('o-s')">
-          <img :src="roleBtn1" />
-          <span class="role-text">Object</span>
-        </button>
+              <button type="button"
+                      class="btn-role"
+                      :class="{ active: currentPreset === 'o-s' }"
+                      @click.prevent="presetRoles('o-s')">
+                <img :src="roleBtn1" />
+                <span class="role-text">Object</span>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
 
       <div
@@ -97,8 +103,14 @@
       <!-- filled constraint (non-agent only) -->
       <template v-else>
         <template v-if="pair.c.class === 'HasType'">
-          <b>Relation type:</b>
-          <type-select v-model="pair.c.constraint"></type-select>
+          <div class="container pl-0">
+            <form>
+              <div class="form-row">
+                <span>Relation type:</span>
+                <type-select v-model="pair.c.constraint"></type-select>
+              </div>
+            </form>
+          </div>
         </template>
 
         <template v-else-if="pair.c.class === 'FromMeshIds'">
@@ -264,14 +276,14 @@
           alert('Please enter at least one constraint.');
           return;
         }
-        
+
         // Validate MeSH IDs if MeshSelect has input
         const meshValidationError = this.validateMeshIds();
         if (meshValidationError) {
           alert(meshValidationError);
           return;
         }
-        
+
         this.lastSearchOk = false;
         this.shareUrl = "";
         this.next_offset = 0;
@@ -463,26 +475,26 @@
 
         return false;
       },
-      
+
       validateMeshIds() {
         // Find all FromMeshIds constraints
         const meshConstraints = Object.values(this.constraints).filter(
           c => c && c.class === 'FromMeshIds' && c.constraint
         );
-        
+
         for (const constraint of meshConstraints) {
           const meshIds = constraint.constraint.mesh_ids || [];
-          
+
           // If mesh_ids array is empty, no validation needed (empty input is allowed)
           if (meshIds.length === 0) {
             continue;
           }
-          
+
           // Validate each mesh_id
           // MeSH ID pattern: starts with a letter (typically D, C, etc.) followed by digits
           // Example: D0135456, D000086382
           const meshIdPattern = /^[A-Z]\d+$/i;
-          
+
           for (const meshId of meshIds) {
             const meshIdStr = String(meshId).trim();
             // If there's a value, it must match the MeSH ID pattern
@@ -491,7 +503,7 @@
             }
           }
         }
-        
+
         return null; // No validation errors
       },
       presetRoles(mode) {
@@ -901,6 +913,19 @@
       margin-left: 6px;
       vertical-align: middle;
       margin-bottom: 2px;
+  }
+
+  .form-row {
+    margin-bottom: 15px;
+    border-style: solid;
+    border-color: rgba(209, 209, 209, 1);
+    border-image: none;
+    border-width: 2px;
+    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
 
 </style>
