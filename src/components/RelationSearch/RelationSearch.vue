@@ -918,7 +918,7 @@
   .indra-grey-border {
     margin-bottom: 15px;
     border-style: solid;
-    border-color: rgba(209, 209, 209, 1);
+    border-color: rgb(242, 242, 242);
     border-image: none;
     border-width: 2px;
     border-radius: 5px;
