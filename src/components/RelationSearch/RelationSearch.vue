@@ -21,7 +21,7 @@
       <div id="seach-box">
       <div class="container pl-0">
         <form>
-          <div class="form-row"
+          <div class="form-row indra-grey-border"
               v-for="(pair, i) in hasAgentConstraints"
               :key="pair.idx">
 
@@ -47,9 +47,9 @@
         </form>
       </div>
       <div class="container pl-0">
-        <form>
+        <form class="indra-grey-border" style="padding: 10px; margin-left: -5px; margin-right: -5px;">
+          <span>Agent role</span>
           <div class="form-row">
-            <span>Agent role</span>
             <div class="role-presets">
               <button type="button"
                       class="btn-role"
@@ -104,9 +104,9 @@
       <template v-else>
         <template v-if="pair.c.class === 'HasType'">
           <div class="container pl-0">
-            <form>
+            <form class="indra-grey-border" style="padding: 10px; margin-left: -5px; margin-right: -5px;">
+              <span>Relation type:</span>
               <div class="form-row">
-                <span>Relation type:</span>
                 <type-select v-model="pair.c.constraint"></type-select>
               </div>
             </form>
@@ -116,7 +116,7 @@
         <template v-else-if="pair.c.class === 'FromMeshIds'">
           <div class="container pl-0">
             <form>
-              <div class="form-row">
+              <div class="form-row indra-grey-border">
                 <mesh-select v-model="pair.c.constraint" :example-tick="exampleTick"></mesh-select>
               </div>
             </form>
@@ -915,7 +915,7 @@
       margin-bottom: 2px;
   }
 
-  .form-row {
+  .indra-grey-border {
     margin-bottom: 15px;
     border-style: solid;
     border-color: rgba(209, 209, 209, 1);
