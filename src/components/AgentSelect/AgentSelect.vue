@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group col-12 col-lg-10 mb-3">
+  <div class="col-12 col-lg-10">
     <label :for="inputId" class="d-flex align-items-center mb-2">
       {{ labelText }}
       <span
