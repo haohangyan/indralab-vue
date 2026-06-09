@@ -10,6 +10,20 @@
                  class='badge badge-success badge-pill'>
             &#9998; {{ cur_count }}
           </small>
+          <span v-if="affect_summary"
+                class="consensus-affect-summary">
+            <span v-for="(step, index) in affect_summary.steps"
+                  :key="`${step}-${index}`"
+                  class="consensus-affect-step">
+              <span v-if="index > 0"
+                    class="consensus-affect-arrow">
+                &rarr;
+              </span>
+              <span class="consensus-affect-chip">
+                {{ step }}
+              </span>
+            </span>
+          </span>
         </h5>
       </div>
       <div class="col-auto text-right">
@@ -52,6 +66,7 @@
       english: String,
       source_counts: Object,
       agents: Object,
+      affect_summary: Object,
       cur_count: {
         type: Number,
         default: 0
@@ -135,5 +150,34 @@
   }
   .right-bar {
     border-right: #0d5aa7 solid 1px;
+  }
+  .consensus-affect-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    margin-left: 0.75rem;
+    color: #555;
+    font-size: 0.58em;
+    font-weight: 500;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .consensus-affect-chip {
+    display: inline-block;
+    padding: 0.1rem 0.35rem;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fafafa;
+  }
+  .consensus-affect-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+  }
+  .consensus-affect-arrow {
+    display: inline-block;
+    margin: 0 0.1rem;
+    color: #777;
+    font-weight: 600;
   }
 </style>
