@@ -195,7 +195,7 @@ export default {
 
     namespace_from_input () {
       if (this.parsedPrefix) return this.parsedPrefix.ns
-      return 'AUTO'
+      return 'TEXT'
     },
 
     partialConstraint () {
