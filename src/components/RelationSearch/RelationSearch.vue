@@ -557,12 +557,12 @@
            .slice(0, 2);
        },
        _parseAgentToken(s) {
-        if (!s) return { ns: 'AUTO', id: '' };
+        if (!s) return { ns: 'TEXT', id: '' };
         const m = String(s).trim().match(/^(?<ns>[^:：\s]+)\s*[:：]\s*(?<id>.+)$/);
         if (m && m.groups) {
           return { ns: m.groups.ns.toUpperCase(), id: m.groups.id.trim() };
         }
-        return { ns: 'AUTO', id: String(s).trim() };
+        return { ns: 'TEXT', id: String(s).trim() };
        },
        async copyLink() {
           const text = this.shareUrl || window.location.href;
@@ -810,13 +810,13 @@
       if (a1) {
         this.$set(a1.c, 'constraint', { ...(a1.c.constraint || {}),
           agent_id: d.agent1 || '' ,
-          namespace: 'AUTO'
+          namespace: 'TEXT'
         });
       }
       if (a2) {
         this.$set(a2.c, 'constraint', { ...(a2.c.constraint || {}),
           agent_id: d.agent2 || '' ,
-          namespace: 'AUTO'
+          namespace: 'TEXT'
         });
       }
 
