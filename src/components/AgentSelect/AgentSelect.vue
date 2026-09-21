@@ -228,7 +228,7 @@ export default {
       const v = this.value || {};
       const ns = typeof v.namespace === 'string' ? v.namespace.toUpperCase() : null;
       const id = typeof v.agent_id === 'string' ? v.agent_id : '';
-      if (ns && id && ns !== 'AUTO') {
+      if (ns && id && !['AUTO', 'TEXT'].includes(ns)) {
         this.agent_str = `${ns.toLowerCase()}:${id}`;
       } else {
         this.agent_str = id;

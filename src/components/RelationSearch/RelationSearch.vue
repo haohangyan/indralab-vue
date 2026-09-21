@@ -586,7 +586,7 @@
            const a = pair.c?.constraint || {};
            if (!a.agent_id) return;
            const display = (this.displayTextMap[pair.idx] || '').trim();
-           const token = display || ((a.namespace && a.namespace !== 'AUTO')
+           const token = display || ((a.namespace && !['AUTO', 'TEXT'].includes(String(a.namespace).toUpperCase()))
              ? `${String(a.namespace).toLowerCase()}:${a.agent_id}`
              : a.agent_id);
            params.set(names[i], token);
